@@ -7,6 +7,7 @@ boxes = [
 VAGRANTFILE_API_VERSION = "2"
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     boxes.each do |opts|
+        config.vm.synced_folder "./sync", "/vagrant", type: "rsync"
         config.vm.define opts[:name] do |config|
           config.vm.box = "CentOS-7.0-1406-x86_64"
           config.vm.box_url = "http://www.cngrgroup.com/VirtualBoxImage/CentOS-7.0-1406-x86_64.box"
